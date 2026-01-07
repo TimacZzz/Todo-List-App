@@ -1,0 +1,15 @@
+{
+  "name": "todo-list-app",
+  "version": "1.0.0",
+  "description": "An app that allows users to keep track of their to-do list",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Timac Wang",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
