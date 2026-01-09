@@ -1,4 +1,71 @@
+*{
+    margin: 0;
+    border: 1px solid white;
+}
+
 body{
     background-image: url("./images/login-bk.jpg");
     background-size: cover;
+    font-family: "DM Serif Text", serif;
+
+}
+
+#login-page{
+    display: flex;
+}
+
+#welcome-container{
+    box-sizing: border-box;
+    color: white;
+    width: 70%;
+    height: 100vh;
+}
+
+#icon{
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    margin-right: 0.5rem;
+}
+
+#brand-container{
+    display: flex;
+    align-items: center;
+    margin: 3rem 4rem 0;
+}
+
+#welcome-text-container{
+    margin: 4rem auto 0;
+    text-align: center;
+}
+
+.subtitle{
+    font-size: 3rem;
+}
+
+.title{
+    font-size: 9rem;
+}
+
+#todo-list-image{
+    display: block;
+    width: 65%;
+    object-fit: cover;
+    margin: 3rem auto 0;
+    border: 5px solid white;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);
+}
+
+#login-container{
+    width: 50%;
+}
+
+#login-form-container{
+    width: 80%;
+    height: 50%;
+    margin: 10%;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid white;
 }
