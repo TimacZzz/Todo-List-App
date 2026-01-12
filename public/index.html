@@ -4,45 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List App</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" href="./images/todo-list-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap" rel="stylesheet">
 </head>
 <body>
-    <section id="login-page">
-        <div id="welcome-container">
-            <div id="brand-container">
-                <img id="icon" src="./images/todo-list-icon.png">
-                <h1>To-Do App</h1>
+    <main>
+        <section id="login-page">
+            <div id="welcome-container">
+                <div id="brand-container">
+                    <img id="icon" src="./images/todo-list-icon.png">
+                    <h1>To-Do App</h1>
+                </div>
+                <div id="welcome-text-container">
+                    <p class="title">Welcome Back!</p>
+                    <p class="subtitle">Plan smarter. Finish faster.</p>
+                </div>
+                <div id="image-container">
+                    <img id="todo-list-image" src="./images/todo-list-image.jpg">
+                </div>
             </div>
-            <div id="welcome-text-container">
-                <p class="title">Welcome Back!</p>
-                <p class="subtitle">Plan smarter. Finish faster.</p>
+            <div id="login-container">
+                <div class="form-container" id="login">
+                    <form class="form" id="login-form">
+                        <p class="subtitle">Login</p>
+                        <div>
+                            <label class="text" for="username">Username</label>
+                            <input class="text" id="username" name="username" type="text" required placeholder="Ex. johnsmith">  
+                        </div>
+                        <div>
+                            <label class="text" for="password">Password</label>
+                            <input class="text" id="password" name="password" type="text" required placeholder="Ex. johnsmith123">  
+                        </div>
+                        <div>
+                            <button class="text" type="submit">Login</button>
+                        </div>
+                        
+                        <p class="text">No account? <a id="sign-up-link">Sign up here</a></p>
+                    </form>
+                </div>
+                <div class="form-container hidden" id="sign-up">
+                    <form class="form">
+                        <p class="subtitle">Sign Up</p>
+                        <div>
+                            <label class="text" for="username">Username</label>
+                            <input class="text" id="username" name="username" type="text" required placeholder="Ex. johnsmith">  
+                        </div>
+                        <div>
+                            <label class="text" for="password">Password</label>
+                            <input class="text" id="password" name="password" type="text" required placeholder="Ex. johnsmith123">  
+                        </div>
+                        <div>
+                            <button class="text" type="submit">Sign Up</button>
+                        </div>
+                        <p class="text">Already Registered? <a id="login-link">Log in here</a></p>
+                    </form>
+                </div>
             </div>
-            <div id="image-container">
-                <img id="todo-list-image" src="./images/todo-list-image.jpg">
-            </div>
-        </div>
-        <div id="login-container">
-            <div id="login-form-container">
-                <form>
-                    <h2>Login</h2>
-                    <div>
-                        <label for="username">Username</label>
-                        <input id="username" name="username" type="text" required placeholder="johnsmith">  
-                    </div>
-                    <div>
-                        <label for="password">Password</label>
-                        <input id="password" name="password" type="text" required placeholder="johnsmith123">
-                    </div>
-                    
-                    <button type="submit">Login</button>
-                </form>
-            </div>
-        </div>
-    </section>
-    <script src="./js/script.js"></script>
+        </section>
+    </main>
+    
+    <script src="./js/login.js"></script>
 </body>
 </html>

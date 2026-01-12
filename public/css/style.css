@@ -1,0 +1,209 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url("../images/login-bk.jpg");
+    background-size: cover;
+    font-family: "DM Serif Text", serif;
+}
+
+#login-page{
+    display: flex;
+}
+
+#welcome-container{
+    color: white;
+    width: 65%;
+    height: 100vh;
+}
+
+#icon{
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    margin-right: 0.5rem;
+}
+
+#brand-container{
+    display: flex;
+    align-items: center;
+    margin: 3rem 4rem 0;
+}
+
+#welcome-text-container{
+    margin: 3rem auto 0;
+    text-align: center;
+}
+
+.subtitle{
+    font-size: 3rem;
+}
+
+.title{
+    font-size: 9rem;
+}
+
+.text{
+    font-size: 1.5rem;
+}
+
+#todo-list-image{
+    display: block;
+    width: 60%;
+    object-fit: cover;
+    margin: 3rem auto 0;
+    border: 5px solid white;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);
+}
+
+#login-container{
+    width: 35%;
+    margin-top: 5rem;
+}
+
+.form-container{
+    width: 70%;
+    margin-top: 15rem;
+    background-color: white;
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+.form div{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 2rem;
+}
+
+input, textarea, select{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 0.5rem;
+}
+
+input, select{
+    height: 3rem;
+}
+
+button{
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 20px;
+    background-color: rgb(62, 59, 59);
+    color: white;
+}
+
+.form p{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+a{
+    color: rgb(79, 79, 227)
+}
+
+a:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.hidden{
+    display: none;
+}
+
+h1, h2{
+    color: white;
+    text-align: center;
+}
+
+#quadrant-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    width: 60%;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.quadrant{
+    width: 45%;
+}
+
+.tasks-container{
+    height: 50rem;
+    background-color: white;
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 1rem;
+}
+
+#buttons-container{
+    width: 25%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    height: 10%;
+    padding: 1.5rem 2rem;
+}
+
+.navbar #brand-container{
+    margin: 0;
+}
+
+#navbar-app-name{
+    color: black;
+}
+
+.navbar-btns{
+    width: 24%;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+}
+
+.navbar-btns:hover{
+    background-color: rgba(60, 54, 54, 0.5);
+    cursor: pointer;
+}
+
+#task{
+    width: 40%;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+#daily-tasks .tasks-container{
+    width: 40%;
+    margin: 2rem auto;
+}
+
+li div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete{
+    border: 1px solid white;
+}
+
+.delete:hover{
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgba(60, 54, 54, 0.5);
+}
+
