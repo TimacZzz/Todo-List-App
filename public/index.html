@@ -31,12 +31,12 @@
                     <form class="form" id="login-form">
                         <p class="subtitle">Login</p>
                         <div>
-                            <label class="text" for="username">Username</label>
-                            <input class="text" id="username" name="username" type="text" required placeholder="Ex. johnsmith">  
+                            <label class="text" for="login-username">Username</label>
+                            <input class="text" id="login-username" name="login-username" type="text" required placeholder="Ex. johnsmith">  
                         </div>
                         <div>
-                            <label class="text" for="password">Password</label>
-                            <input class="text" id="password" name="password" type="text" required placeholder="Ex. johnsmith123">  
+                            <label class="text" for="login-password">Password</label>
+                            <input class="text" id="login-password" name="login-password" type="text" required placeholder="Ex. johnsmith123">  
                         </div>
                         <div>
                             <button class="text" type="submit">Login</button>
@@ -46,20 +46,21 @@
                     </form>
                 </div>
                 <div class="form-container hidden" id="sign-up">
-                    <form class="form">
+                    <form class="form" id="sign-up-form">
                         <p class="subtitle">Sign Up</p>
                         <div>
-                            <label class="text" for="username">Username</label>
-                            <input class="text" id="username" name="username" type="text" required placeholder="Ex. johnsmith">  
+                            <label class="text" for="sign-up-username">Username</label>
+                            <input class="text" id="sign-up-username" name="sign-up-username" type="text" required placeholder="Ex. johnsmith">  
                         </div>
                         <div>
-                            <label class="text" for="password">Password</label>
-                            <input class="text" id="password" name="password" type="text" required placeholder="Ex. johnsmith123">  
+                            <label class="text" for="sign-up-password">Password</label>
+                            <input class="text" id="sign-up-password" name="sign-up-password" type="text" required placeholder="Ex. johnsmith123">  
                         </div>
                         <div>
                             <button class="text" type="submit">Sign Up</button>
                         </div>
-                        <p class="text">Already Registered? <a id="login-link">Log in here</a></p>
+                        <p class="text" id="already-registered">Already Registered? <a id="login-link">Log in here</a></p>
+                        <p class="text" id="is-registered"></p>
                     </form>
                 </div>
             </div>

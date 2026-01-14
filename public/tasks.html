@@ -19,15 +19,15 @@
                 <h1 id="navbar-app-name">To-Do App</h1>
             </div>
             <div id="buttons-container">
-                <button class="navbar-btns">Add Task</button>
-                <button class="navbar-btns">Daily Tasks</button>
-                <button class="navbar-btns">Four Quadrants</button>
-                <button class="navbar-btns">Log Out</button>
+                <button class="navbar-btns" id="add-task-btn">Add Task</button>
+                <button class="navbar-btns" id="daily-tasks-btn">Daily Tasks</button>
+                <button class="navbar-btns" id="four-quadrants-btn">Four Quadrants</button>
+                <button class="navbar-btns" id="log-out-btn">Log Out</button>
             </div>
         </nav>
     </header>
     <main>
-        <section id="add-task" class="hidden">
+        <section id="add-task">
             <h1 class="title">Add Task</h1>
             <div class="form-container" id="task">
                     <form class="form" id="task-form">
@@ -58,7 +58,7 @@
                     </form>
                 </div>
         </section>         
-        <section id="daily-tasks">
+        <section id="daily-tasks" class="hidden">
             <h1 class="title">Daily Tasks</h1>
             <div class="tasks-container">
                 <ul>
