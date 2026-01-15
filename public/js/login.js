@@ -14,10 +14,17 @@ signUpLink.addEventListener("click", () => {
     loginContainer.classList.add("hidden");
 });
 
+// Modal
+const modal = document.getElementById("modal");
+const modalContent = document.getElementById("modal-content");
+const closeBtn = document.getElementById("close-btn");
+
+closeBtn.addEventListener("click", () => {
+    modal.close();
+});
+
 // Handle the sign up logic
 const signUpForm = document.getElementById("sign-up-form");
-const alreadyRegistered = document.getElementById("already-registered");
-const isRegistered = document.getElementById("is-registered");
 
 signUpForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -28,7 +35,7 @@ signUpForm.addEventListener("submit", async (e) => {
     signUpForm.reset();
 
     try{
-        const res = await fetch('/api/auth/register', {
+        const res = await fetch('/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -39,28 +46,18 @@ signUpForm.addEventListener("submit", async (e) => {
         const data = await res.json();
 
         if (res.ok){
-            isRegistered.innerHTML = "You have successfully registered! Click <a id='success-message'>here</a> to login</p>";
-            const successMessage = document.getElementById("success-message");
-            alreadyRegistered.classList.add("hidden");
-            isRegistered.classList.remove("hidden");
-
-            successMessage.addEventListener("click", () => {
-                loginContainer.classList.remove("hidden");
-                signUpContainer.classList.add("hidden");
-                alreadyRegistered.classList.remove("hidden");
-                isRegistered.classList.add("hidden");
-            })
+            modalContent.textContent = "You have successfully registered!"
+            modal.showModal();
         }
         else{
             const errorMessage = data.error;
-            isRegistered.innerHTML = errorMessage + "Please register again!";
+            modalContent.textContent = `${errorMessage} Please try again!`;
+            modal.showModal();
         }
     }
     catch (err){
-        console.error("Network error: " + err)
-    }
-    finally{
-
+        modalContent.textContent = `Network error: ${err} Please try again!`;
+        modal.showModal();
     }
 })
 
@@ -74,7 +71,7 @@ loginForm.addEventListener("submit", async (e) => {
     const password = document.getElementById('login-password').value.trim();
 
     try{
-        const res = await fetch('/api/auth/login', {
+        const res = await fetch('/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -88,14 +85,14 @@ loginForm.addEventListener("submit", async (e) => {
             window.location.href = "/userHomepage";
         }
         else{
-
+            const errorMessage = data.error;
+            modalContent.textContent = `${errorMessage} Please try again!`;
+            modal.showModal();
         }
     }
     catch (err){
-        console.error("Network error: " + err)
-    }
-    finally{
-
+        modalContent.textContent = `Network error: ${err} Please try again!`;
+        modal.showModal();
     }
 })
 

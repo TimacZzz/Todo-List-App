@@ -6,7 +6,7 @@ export async function viewAllProducts() {
     const db = await getDBConnection();
 
     try {
-        const abductions = await db.all('SELECT * FROM tasks');
+        const abductions = await db.all('SELECT * FROM users');
         console.table(abductions) 
     } catch (err) {
         console.error('Error fetching products:', err.message)

@@ -26,7 +26,7 @@ app.use(session({
 
 app.use(express.static('public'));
 
-app.use("/api/auth", authRouter);
+app.use("/auth", authRouter);
 
 app.use("/userHomepage", userRouter);
 
