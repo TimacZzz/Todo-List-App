@@ -26,7 +26,7 @@ export async function addTask(req, res){
 
     }
     catch (err){
-
+        return res.status(500).json({error: "Internal server error."});
     }
 }
 
@@ -40,7 +40,7 @@ export async function dailyTasks(req, res){
         res.json({result});
     }
     catch(err){
-
+        return res.status(500).json({error: "Internal server error."});
     }
 }
 
@@ -54,6 +54,36 @@ export async function fourQuadrantsTasks(req, res){
         res.json({result});
     }
     catch(err){
+        return res.status(500).json({error: "Internal server error."});
+    }
+}
 
+export async function deleteTask(req, res){
+    const userId = req.session.userId;
+    const taskId = parseInt(req.params.taskId, 10)
+
+    try{
+        const db = await getDBConnection();
+        await db.run('DELETE FROM tasks WHERE id = ? and user_id = ?', [taskId, userId]);
+
+        res.status(204).send();
+    }
+    catch(err){
+        return res.status(500).json({error: "Internal server error."});
+    }
+}
+
+export async function getTask(req, res){
+    const userId = req.session.userId;
+    const taskId = parseInt(req.params.taskId, 10)
+
+    try{
+        const db = await getDBConnection();
+        const result = await db.get('SELECT * FROM tasks WHERE id = ? and user_id = ?', [taskId, userId]);
+
+        res.json({result});
+    }
+    catch(err){
+        return res.status(500).json({error: "Internal server error."});
     }
 }

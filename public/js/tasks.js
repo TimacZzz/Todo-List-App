@@ -17,6 +17,12 @@ const quadrant3TasksContainer = document.getElementById("quadrant3-tasks-contain
 const quadrant4TasksContainer = document.getElementById("quadrant4-tasks-container");
 
 // Daily Task Section
+const quadrantMap = new Map();
+quadrantMap.set(1, 'Urgent & Important');
+quadrantMap.set(2, 'Not Urgent & Important');
+quadrantMap.set(3, 'Urgent & Not Important');
+quadrantMap.set(4, 'Not Urgent & Not Important');
+
 dailyTasksBtn.addEventListener("click", async () => {
     addTask.classList.add("hidden");
     fourQuadrants.classList.add("hidden");
@@ -30,9 +36,9 @@ dailyTasksBtn.addEventListener("click", async () => {
 
         for (const task of data.result){
             resultString += 
-            `<li class="text">
+            `<li class="text" data-task-id="${task.id}">
                 <div>
-                    <span>${task.title} - ${task.quadrant}</span>
+                    <span>${task.title} - ${quadrantMap.get(parseInt(task.quadrant))}</span>
                     <span class="material-symbols-outlined delete">delete</span>
                 </div>
             </li>`
@@ -41,6 +47,9 @@ dailyTasksBtn.addEventListener("click", async () => {
         resultString += "</ul>"
 
         dailyTasksContainer.innerHTML = resultString;
+
+        setUpDeleteLogic();
+        setUpDescriptionLogic();
     }
     else{
         const errorMessage = data.error;
@@ -67,7 +76,7 @@ fourQuadrantsBtn.addEventListener("click", async () => {
         for (const task of data.result){
             if (task.quadrant == 1){
                 quadrant1String += 
-                `<li class="text">
+                `<li class="text" data-task-id="${task.id}">
                     <div>
                         <span>${task.title}</span>
                         <span class="material-symbols-outlined delete">delete</span>
@@ -76,7 +85,7 @@ fourQuadrantsBtn.addEventListener("click", async () => {
             }
             else if (task.quadrant == 2){
                 quadrant2String += 
-                `<li class="text">
+                `<li class="text" data-task-id="${task.id}">
                     <div>
                         <span>${task.title}</span>
                         <span class="material-symbols-outlined delete">delete</span>
@@ -86,7 +95,7 @@ fourQuadrantsBtn.addEventListener("click", async () => {
             }
             else if (task.quadrant == 3){
                 quadrant3String += 
-                `<li class="text">
+                `<li class="text" data-task-id="${task.id}">
                     <div>
                         <span>${task.title}</span>
                         <span class="material-symbols-outlined delete">delete</span>
@@ -96,7 +105,7 @@ fourQuadrantsBtn.addEventListener("click", async () => {
             }
             else{
                 quadrant4String += 
-                `<li class="text">
+                `<li class="text" data-task-id="${task.id}">
                     <div>
                         <span>${task.title}</span>
                         <span class="material-symbols-outlined delete">delete</span>
@@ -114,6 +123,9 @@ fourQuadrantsBtn.addEventListener("click", async () => {
         quadrant2TasksContainer.innerHTML = quadrant2String;
         quadrant3TasksContainer.innerHTML = quadrant3String;
         quadrant4TasksContainer.innerHTML = quadrant4String;
+
+        setUpDeleteLogic();
+        setUpDescriptionLogic();
     }
     else{
         const errorMessage = data.error;
@@ -184,11 +196,93 @@ taskForm.addEventListener("submit", async (e) => {
 })
 
 // Set up logic deleting tasks
-const deleteBtn = document.querySelector(".delete");
+async function setUpDeleteLogic(){
+    const deleteBtnsArr = document.querySelectorAll(".delete");
 
-deleteBtn.addEventListener("click", () => {
-    const task = deleteBtn.closest('li');
-    task.remove();
-})
+    deleteBtnsArr.forEach(deleteBtn => {
+        deleteBtn.addEventListener("click", async (e) => {
+            e.stopPropagation();
+
+            const taskId = deleteBtn.closest('li').dataset.taskId;
+
+            try{
+                const res = await fetch(`/userHomepage/${taskId}`, {
+                    method: 'DELETE',
+                    credentials: 'include'
+                })
+
+                if (res.ok){
+                    // Render the page again
+                    if (dailyTasks.classList.contains("hidden")){
+                        fourQuadrantsBtn.click();
+                    }
+                    else{
+                        dailyTasksBtn.click();
+                    }
+                }
+                else{
+                    const errorMessage = data.error;
+                    modalContent.textContent = `${errorMessage} Please try again!`;
+                    modal.showModal();
+                }
+            }
+            catch (err){
+                modalContent.textContent = `Network error: ${err} Please try again!`;
+                modal.showModal();
+            }
+        })
+    })
+}
+
+// Modal
+const modal = document.getElementById("modal");
+const modalContent = document.getElementById("modal-content");
+const closeBtn = document.getElementById("close-btn");
+
+closeBtn.addEventListener("click", () => {
+    modal.close();
+});
+
+const taskModal = document.getElementById("task-modal");
+const taskModalHeader= document.getElementById("task-modal-header");
+const taskModalContent = document.getElementById("task-modal-content");
+const taskCloseBtn = document.getElementById("task-close-btn");
+
+taskCloseBtn.addEventListener("click", () => {
+    taskModal.close();
+});
 
 // Need logic to click onto each task and display description in another modal
+async function setUpDescriptionLogic(){
+    const tasksArr = document.querySelectorAll("li");
+
+    tasksArr.forEach(task => {
+        task.addEventListener("click", async () => {
+
+            const taskId = task.dataset.taskId;
+
+            try{
+                const res = await fetch(`/userHomepage/${taskId}`);
+                const data = await res.json();
+
+                if (res.ok){
+                    const result = data.result;
+
+                    taskModalHeader.textContent = result.title + " - " + result.due_date;
+                    taskModalContent.textContent = result.description;
+
+                    taskModal.showModal();
+                }
+                else{
+                    const errorMessage = data.error;
+                    modalContent.textContent = `${errorMessage} Please try again!`;
+                    modal.showModal();
+                }
+            }
+            catch (err){
+                modalContent.textContent = `Network error: ${err} Please try again!`;
+                modal.showModal();
+            }
+        })
+    })
+}

@@ -9,7 +9,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=delete" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     </head>
     <body>
         <header>
@@ -107,8 +107,17 @@
             <div>
                 <span class="material-symbols-outlined text" id="close-btn">close</span>
             </div>
-            <div id="modal-content-container">
-                <p class="text" id="modal-content">Current UTC, Time Zone (Coordinated Universal Time)</p>
+            <div>
+                <p class="text" id="modal-content"></p>
+            </div>
+        </dialog>
+        <dialog id="task-modal">
+            <div>
+                <span class="material-symbols-outlined text" id="task-close-btn">close</span>
+            </div>
+            <div>
+                <p class="text" id="task-modal-header"></p>
+                <p class="text" id="task-modal-content"></p>
             </div>
         </dialog>
         <script src="./js/tasks.js" defer></script>

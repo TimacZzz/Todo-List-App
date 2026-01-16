@@ -200,11 +200,17 @@ li div{
     align-items: center;
 }
 
-.delete, #close-btn{
+li{
+    margin-bottom: 0.4rem;
+    padding: 0.2rem;
+}
+
+.delete, #close-btn, li, #task-close-btn{
     border: 1px solid white;
 }
 
-.delete:hover, #close-btn:hover{
+
+.delete:hover, #close-btn:hover, li:hover, #task-close-btn:hover{
     cursor: pointer;
     border: 1px solid black;
     border-radius: 5px;
@@ -234,6 +240,11 @@ dialog > :first-child{
     justify-content: flex-end;
 }
 
-#modal-content{
+#modal-content, #task-modal-content, #task-modal-header{
     text-align: center;
 }
+
+#task-modal-header{
+    margin-bottom: 0.5rem;
+}
+

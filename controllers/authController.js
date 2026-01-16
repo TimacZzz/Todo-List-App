@@ -5,19 +5,10 @@ export async function registerUser(req, res){
     // Parse the req.body to receive the username & password
     let { username, password } = req.body;
 
-    // Test if there is a username or password
-    if (!username || !password){
-        return res.status(400).json({error: "All fields are required."})
-    }
+    const testResult = verify(username, password);
 
-    username = username.trim();
-    password = password.trim();
-
-    const format = /^[a-zA-Z0-9_-]{1,20}$/;
-
-    // Test if the username & password match the desired format
-    if (!format.test(username) || !format.test(password)){
-        return res.status(400).json({error: "Username & Password must be 1-20 characters, using letters, numbers, _ or -."})
+    if (!testResult[0]){
+        return res.status(400).json({error: testResult[1]})
     }
 
     try{
@@ -36,10 +27,9 @@ export async function registerUser(req, res){
         req.session.userId = result.lastID;
 
         res.status(201).json({ message: "User registered" });
-
     }
     catch (err){
-
+        return res.status(500).json({error: "Internal server error."})
     }
 }
 
@@ -47,19 +37,10 @@ export async function loginUser(req, res){
     // Parse the req.body to receive the username & password
     let { username, password } = req.body;
 
-    // Test if there is a username or password
-    if (!username || !password){
-        return res.status(400).json({error: "All fields are required."})
-    }
+    const testResult = verify(username, password);
 
-    username = username.trim();
-    password = password.trim();
-
-    const format = /^[a-zA-Z0-9_-]{1,20}$/;
-
-    // Test if the username & password match the desired format
-    if (!format.test(username) || !format.test(password)){
-        return res.status(400).json({error: "Username & Password must be 1-20 characters, using letters, numbers, _ or -."})
+    if (!testResult[0]){
+        return res.status(400).json({error: testResult[1]})
     }
 
     try{
@@ -85,11 +66,28 @@ export async function loginUser(req, res){
 
     }
     catch (err){
-
+        return res.status(500).json({error: "Internal server error."})
     }
 }
 
 // Refactor the code
 function verify(username, password){
+    let arr = [];
 
+    // Test if there is a username or password
+    if (!username || !password){
+        return [false, "All fields are required."]
+    }
+
+    username = username.trim();
+    password = password.trim();
+
+    const format = /^[a-zA-Z0-9_-]{1,20}$/;
+
+    // Test if the username & password match the desired format
+    if (!format.test(username) || !format.test(password)){
+        return [false, "Username & Password must be 1-20 characters, using letters, numbers, _ or -."]
+    }
+
+    return [true, ""];
 }

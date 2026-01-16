@@ -1,2 +1,4 @@
 node_modules/
 .env
+createTable.js
+logTable.js
